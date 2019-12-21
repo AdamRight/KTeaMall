@@ -30,7 +30,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(),RegisterView {
 
         btnRegister3.setOnClickListener {
             //Anko
-            mPresenter.register("", "")
+            mPresenter.register("", "","")
         }
     }
 
