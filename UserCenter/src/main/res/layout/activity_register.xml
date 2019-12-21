@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Button
-        android:text="注册"
-        android:id="@+id/btnRegister"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Anko跳转1"
+        android:id="@+id/btnRegister1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister1"
+        android:text="Anko跳转2"
+        android:id="@+id/btnRegister2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -10,5 +10,14 @@ Kotlin项目
 
 使用 `apply plugin: 'kotlin-android-extensions'`。
 
+## 3、Anko的使用
+
+    https://github.com/Kotlin/anko
+
+工具库
+
+    Intents、Dialogs and toasts 、Logging、Resources and dimensions、Anko Layouts、Anko SQLite (wiki)
+
+
 
 
