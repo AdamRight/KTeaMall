@@ -29,5 +29,18 @@ Kotlin项目
 
     https://github.com/square/retrofit
 
+## 7、dagger2
+
+    https://github.com/google/dagger
+
+Inject、Component、Module、Provides、Scope、Singleton、Qualifier、Named
+
+## RxLifecycle
+
+解决Rx内存泄漏
+
+    https://github.com/trello/RxLifecycle
+
+
 
 
