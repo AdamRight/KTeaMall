@@ -31,46 +31,46 @@ object AppPrefsUtils {
         return sp.getBoolean(key, false)
     }
 
-    /*
-        String数据
+    /**
+     *   String数据
      */
     fun putString(key: String, value: String) {
         ed.putString(key, value)
         ed.commit()
     }
 
-    /*
-        默认 ""
+    /**
+     * 默认 ""
      */
     fun getString(key: String): String {
         return sp.getString(key, "")
     }
 
-    /*
-        Int数据
+    /**
+     * Int数据
      */
     fun putInt(key: String, value: Int) {
         ed.putInt(key, value)
         ed.commit()
     }
 
-    /*
-        默认 0
+    /**
+     * 默认 0
      */
     fun getInt(key: String): Int {
         return sp.getInt(key, 0)
     }
 
-    /*
-        Long数据
+    /**
+     * Long数据
      */
     fun putLong(key: String, value: Long) {
         ed.putLong(key, value)
         ed.commit()
     }
 
-    /*
-        默认 0
+    /**
+     * 默认 0
      */
     fun getLong(key: String): Long {
         return sp.getLong(key, 0)

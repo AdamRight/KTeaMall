@@ -32,7 +32,7 @@ class AppManager private constructor() {
     }
 
     /**
-     * 获取当前栈顶
+     * 获取当前栈顶Activity
      */
     fun currentActivity(): Activity {
         return activityStack.lastElement()

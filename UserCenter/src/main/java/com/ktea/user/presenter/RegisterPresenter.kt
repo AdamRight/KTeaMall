@@ -10,7 +10,7 @@ import javax.inject.Inject
 /**
  * Created by jiangtea on 2019/12/21.
  */
-class RegisterPresenter : BasePresenter<RegisterView>() {
+class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
 
     @Inject
     lateinit var userService: UserService
