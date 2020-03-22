@@ -48,12 +48,17 @@ Inject、Component、Module、Provides、Scope、Singleton、Qualifier、Named
 	AppManager：Activity管理器
 	HeaderBar:通用标题头部
 	ProgressLoading：加载过程动画视图
+	VerifyButton：获取验证码按钮，带倒计时
 
 	BaseRecyclerViewAdapter：RecyclerViewAdapter基类
 	AppPrefsUtils：sp存储
 	DateUtils：时间日期工具类
 	GlideUtils：Glide工具类
 	NetWorkUtils：检查网络工具
+
+## 用户模块开发
+
+
 
 ## 其他
 
