@@ -1,4 +1,4 @@
-package com.wuc.kotlin.user.injection.module
+package com.ktea.user.injection.module
 
 import com.ktea.user.service.UserService
 import com.ktea.user.service.impl.UserServiceImpl

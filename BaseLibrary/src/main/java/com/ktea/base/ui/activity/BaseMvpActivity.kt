@@ -7,6 +7,8 @@ import com.ktea.base.presenter.view.BaseView
  * Created by jiangtea on 2019/12/21.
  */
 open class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
+    override fun onError(error: String) {
+    }
 
     lateinit var mPresenter: T
 
@@ -16,6 +18,5 @@ open class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
     override fun hideLoading() {
     }
 
-    override fun onError() {
-    }
+
 }

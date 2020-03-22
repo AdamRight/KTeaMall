@@ -6,11 +6,17 @@ import com.ktea.user.R
 import com.ktea.user.presenter.RegisterPresenter
 import com.ktea.user.presenter.view.RegisterView
 import kotlinx.android.synthetic.main.activity_register.*
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
-class RegisterActivity : BaseMvpActivity<RegisterPresenter>(),RegisterView {
+class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
+
+    override fun onError(error: String) {
+        toast(error)
+    }
+
+    override fun onRegisterResult(result: String) {
+        toast(result)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +36,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(),RegisterView {
 
         btnRegister3.setOnClickListener {
             //Anko
-            mPresenter.register("", "","")
+            mPresenter.register("", "", "")
         }
     }
 
@@ -40,17 +46,13 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(),RegisterView {
     private fun ankoDemo() {
         btnRegister1.setOnClickListener {
             //Anko
-            startActivity(intentFor<AnkoLayoutActivity>("id" to 8))
+            //startActivity(intentFor<AnkoLayoutActivity>("id" to 8))
         }
 
         btnRegister2.setOnClickListener {
             //Anko
-            startActivity<AnkoLayoutActivity>("id" to 15)
+            //startActivity<AnkoLayoutActivity>("id" to 15)
         }
     }
 
-    override fun onResult(result: Boolean) {
-        toast("注册成功")
-
-    }
 }
