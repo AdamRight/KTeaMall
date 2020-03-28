@@ -2,9 +2,11 @@ package com.ktea.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.ktea.base.ext.enable
 import com.ktea.base.ext.onClick
 import com.ktea.base.ui.activity.BaseMvpActivity
+import com.ktea.provider.router.RouterPath
 import com.ktea.user.R
 import com.ktea.user.data.protocol.UserInfo
 import com.ktea.user.injection.component.DaggerUserComponent
@@ -17,6 +19,7 @@ import org.jetbrains.anko.toast
 /**
  * Created by jiangtea on 2020/3/22.
  */
+@Route(path = RouterPath.UserCenter.PATH_LOGIN)
 class LoginActivity: BaseMvpActivity<LoginPresenter>(),LoginView,View.OnClickListener {
 
     var mPushProvider: String? = null

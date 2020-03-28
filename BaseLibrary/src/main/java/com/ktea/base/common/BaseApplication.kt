@@ -1,7 +1,9 @@
 package com.ktea.base.common
 
 
-import android.app.Application
+import android.content.Context
+import android.support.multidex.MultiDex
+import android.support.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ktea.base.injection.component.AppComponent
 import com.ktea.base.injection.component.DaggerAppComponent
@@ -11,7 +13,7 @@ import kotlin.properties.Delegates
 /**
  * Application基类
  */
-open class BaseApplication : Application() {
+open class BaseApplication : MultiDexApplication() {
 
     lateinit var mAppComponent: AppComponent
 
@@ -36,5 +38,10 @@ open class BaseApplication : Application() {
      */
     companion object {
         var context: BaseApplication by Delegates.notNull()
+    }
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 }

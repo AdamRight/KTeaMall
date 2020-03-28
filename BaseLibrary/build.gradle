@@ -10,7 +10,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -89,5 +89,8 @@ dependencies {
     api dependencies.arouter
     //BadgeView
     api dependencies.badgeview
+
+    api 'com.android.support:multidex:1.0.1'
+
 }
 

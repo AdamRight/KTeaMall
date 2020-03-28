@@ -13,8 +13,8 @@ import com.ktea.user.data.protocol.UserInfo
 import com.ktea.user.injection.component.DaggerUserComponent
 import com.ktea.user.presenter.UserInfoPresenter
 import com.ktea.user.presenter.view.UserInfoView
+import com.ktea.user.utils.UserPrefsUtils
 import com.qiniu.android.storage.UploadManager
-import com.wuc.kotlin.user.utils.UserPrefsUtils
 import kotlinx.android.synthetic.main.activity_user_info.*
 import org.devio.takephoto.model.TResult
 import org.jetbrains.anko.toast
@@ -91,8 +91,8 @@ class UserInfoActivity : BaseTakePhotoActivity<UserInfoPresenter>(), UserInfoVie
         mPresenter.getUploadToken()
     }
 
-    /*
-        获取上传凭证回调
+    /**
+     *   获取上传凭证回调
      */
     override fun onGetUploadTokenResult(result: String) {
         mUploadManager.put(mLocalFileUrl, null, result, { key, info, response ->
@@ -102,8 +102,8 @@ class UserInfoActivity : BaseTakePhotoActivity<UserInfoPresenter>(), UserInfoVie
         }, null)
     }
 
-    /*
-        编辑用户资料回调
+    /**
+      *  编辑用户资料回调
      */
     override fun onEditUserResult(result: UserInfo) {
         toast("修改成功")

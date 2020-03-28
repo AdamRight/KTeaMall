@@ -1,4 +1,4 @@
-package com.wuc.kotlin.user.utils
+package com.ktea.user.utils
 
 import com.ktea.base.common.BaseConstant
 import com.ktea.base.utils.AppPrefsUtils
