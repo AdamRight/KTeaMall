@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">UserCenter</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="common_next">下一步</string>
+    <string name="common_confirm">确认</string>
+    <string name="common_save">保存</string>
 </resources>

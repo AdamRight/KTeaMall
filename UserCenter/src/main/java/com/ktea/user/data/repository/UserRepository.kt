@@ -3,9 +3,7 @@ package com.ktea.user.data.repository
 import com.ktea.base.data.net.RetrofitFactory
 import com.ktea.base.data.protocol.BaseResp
 import com.ktea.user.data.api.UserApi
-import com.ktea.user.data.protocol.LoginReq
-import com.ktea.user.data.protocol.RegisterReq
-import com.ktea.user.data.protocol.UserInfo
+import com.ktea.user.data.protocol.*
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -27,6 +25,28 @@ class UserRepository @Inject constructor() {
     fun login(mobile: String, pwd: String, pushId: String): Observable<BaseResp<UserInfo>> {
         return RetrofitFactory.instance.create(UserApi::class.java)
                 .login(LoginReq(mobile, pwd, pushId))
+    }
+
+    /**
+     * 忘记密码
+     */
+    fun forgetPwd(mobile: String, verifyCode: String):Observable<BaseResp<String>> {
+        return RetrofitFactory.instance.create(UserApi::class.java).forgetPwd(ForgetPwdReq(mobile, verifyCode))
+    }
+
+    /**
+     * 重置密码
+     */
+    fun resetPwd(mobile: String, pwd: String): Observable<BaseResp<String>> {
+        return RetrofitFactory.instance.create(UserApi::class.java)
+                .resetPwd(ResetPwdReq(mobile, pwd))
+    }
+
+    /**
+     * 编辑用户资料
+     */
+    fun editUser(userIcon: String, userName: String, userGender: String, userSign: String): Observable<BaseResp<UserInfo>> {
+        return RetrofitFactory.instance.create(UserApi::class.java).editUser(EditUserReq(userIcon, userName, userGender, userSign))
     }
 
 }

@@ -19,6 +19,8 @@ import org.jetbrains.anko.toast
  */
 class LoginActivity: BaseMvpActivity<LoginPresenter>(),LoginView,View.OnClickListener {
 
+    var mPushProvider: String? = null
+
     override fun injectComponent() {
         DaggerUserComponent.builder()
                 .activityComponent(mActivityComponent)
@@ -60,10 +62,11 @@ class LoginActivity: BaseMvpActivity<LoginPresenter>(),LoginView,View.OnClickLis
             R.id.mRightTv ->
                 startActivity<RegisterActivity>()
             R.id.mLoginBtn ->{
-                //mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), mPushProvider?.getPushId() ?: "")
+                mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), mPushProvider ?: "")
+                startActivity<UserInfoActivity>()
             }
             R.id.mForgetPwdTv -> {
-                //startActivity<ForgetPwdActivity>()
+                startActivity<ForgetPwdActivity>()
             }
         }
     }
