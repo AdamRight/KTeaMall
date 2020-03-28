@@ -66,12 +66,12 @@ class MeFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
-    /*
-    点击事件
+    /**
+     *点击事件
      */
     override fun onClick(v: View?) {
         when (v!!.id) {
-           R.id.mUserIconIv, R.id.mUserNameTv -> {
+            R.id.mUserIconIv, R.id.mUserNameTv -> {
                 afterLogin {
                     startActivity<UserInfoActivity>()
                 }
@@ -99,9 +99,9 @@ class MeFragment : BaseFragment(), View.OnClickListener {
            R.id.mShareTv -> {
                toast(R.string.coming_soon_tip)
            }*/
-           R.id.mSettingTv -> {
-               startActivity<SettingActivity>()
-           }
+            R.id.mSettingTv -> {
+                startActivity<SettingActivity>()
+            }
         }
     }
 }
