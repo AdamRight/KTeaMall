@@ -7,7 +7,11 @@ if (isUserModule.toBoolean()) {
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
+}
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -51,5 +55,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':Provider')
     kapt  "com.google.dagger:dagger-compiler:$daggerLibVersion"
+    //ARouter
+    def dependencies = rootProject.ext.dependencies
+    kapt dependencies.arouterCompiler
 
 }

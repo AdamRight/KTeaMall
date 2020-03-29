@@ -28,6 +28,7 @@ class GoodsDetailTabTwoFragment : BaseFragment() {
     初始化监听，商品详情获取成功后，加载当前页面
      */
     private fun initObserve() {
+        //TODO 接受收据
         Bus.observe<GoodsDetailImageEvent>()
                 .subscribe {
                     run {
