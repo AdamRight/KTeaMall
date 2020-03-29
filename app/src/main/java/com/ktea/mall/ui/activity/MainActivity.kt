@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ktea.base.ui.activity.BaseActivity
+import com.ktea.goods.ui.fragment.CategoryFragment
 import com.ktea.mall.R
 import com.ktea.mall.ui.fragment.HomeFragment
 import com.ktea.mall.ui.fragment.MeFragment
@@ -18,9 +19,9 @@ class MainActivity : BaseActivity() {
     //主界面Fragment
     private val mHomeFragment: HomeFragment by lazy { HomeFragment() }
     //商品分类Fragment
-    /*private val mCategoryFragment: CategoryFragment by lazy { CategoryFragment() }
+    private val mCategoryFragment: CategoryFragment by lazy { CategoryFragment() }
     //购物车Fragment
-    private val mCartFragment: CartFragment by lazy { CartFragment() }
+    /*private val mCartFragment: CartFragment by lazy { CartFragment() }
     //消息Fragment
     private val mMsgFragment: MessageFragment by lazy { MessageFragment() }*/
     //"我的"Fragment
@@ -45,15 +46,15 @@ class MainActivity : BaseActivity() {
     private fun initFragment() {
         val manager = supportFragmentManager.beginTransaction()
         manager.add(R.id.mContainer, mHomeFragment)
-        /*manager.add(R.id.mContainer, mCategoryFragment)
-        manager.add(R.id.mContainer, mCartFragment)
+        manager.add(R.id.mContainer, mCategoryFragment)
+        /*manager.add(R.id.mContainer, mCartFragment)
         manager.add(R.id.mContainer, mMsgFragment)*/
         manager.add(R.id.mContainer, mMeFragment)
         manager.commit()
 
         mStack.add(mHomeFragment)
-        /*mStack.add(mCategoryFragment)
-        mStack.add(mCartFragment)
+        mStack.add(mCategoryFragment)
+        /*mStack.add(mCartFragment)
         mStack.add(mMsgFragment)*/
         mStack.add(mMeFragment)
     }

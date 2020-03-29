@@ -5,8 +5,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ktea.base.ext.onClick
 import com.ktea.base.ui.fragment.BaseFragment
 import com.ktea.base.widgets.BannerImageLoader
+import com.ktea.goods.ui.activity.SearchGoodsActivity
 import com.ktea.mall.R
 import com.ktea.mall.adapter.HomeDiscountAdapter
 import com.ktea.mall.adapter.TopicAdapter
@@ -15,6 +17,7 @@ import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
 import me.crosswall.lib.coverflow.CoverFlow
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * Created by jiangtea on 2020/3/28.
@@ -39,10 +42,10 @@ class HomeFragment : BaseFragment() {
      * 初始化视图
      */
     private fun initView() {
-        /*mSearchEt.onClick {
+        mSearchEt.onClick {
             startActivity<SearchGoodsActivity>()
         }
-        mScanIv.onClick {
+        /*mScanIv.onClick {
             toast(R.string.coming_soon_tip)
         }*/
     }
