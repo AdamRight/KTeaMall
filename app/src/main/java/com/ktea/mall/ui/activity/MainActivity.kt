@@ -3,14 +3,22 @@ package com.ktea.mall.ui.activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
+import com.eightbitlab.rxbus.Bus
+import com.eightbitlab.rxbus.registerInBus
+import com.ktea.base.common.AppManager
 import com.ktea.base.ui.activity.BaseActivity
+import com.ktea.base.utils.AppPrefsUtils
+import com.ktea.goods.common.GoodsConstant
+import com.ktea.goods.event.UpdateCartSizeEvent
 import com.ktea.goods.ui.fragment.CartFragment
 import com.ktea.goods.ui.fragment.CategoryFragment
 import com.ktea.mall.R
 import com.ktea.mall.ui.fragment.HomeFragment
 import com.ktea.mall.ui.fragment.MeFragment
 import com.ktea.message.center.ui.fragment.MessageFragment
+import com.ktea.provider.common.event.MessageBadgeEvent
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.toast
 import java.util.*
 
 class MainActivity : BaseActivity() {
@@ -33,13 +41,14 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mBottomNavBar.checkCartBadge(20)
+        //虚拟数据
+        AppPrefsUtils.putInt(GoodsConstant.SP_CART_SIZE,3)
 
         initFragment()
         initBottomNav()
         changeFragment(0)
-        /*initObserve()
-        loadCartSize()*/
+        initObserve()
+        loadCartSize()
     }
 
     /**
@@ -93,9 +102,6 @@ class MainActivity : BaseActivity() {
         manager.commit()
     }
 
-    /**//*
-        监听购物车数量变化事件
-     *//*
     private fun initObserve() {
         Bus.observe<UpdateCartSizeEvent>()
                 .subscribe {
@@ -107,9 +113,6 @@ class MainActivity : BaseActivity() {
                 }.registerInBus(this)
     }
 
-    *//*
-        加载购物车数量
-     *//*
     private fun loadCartSize() {
         mBottomNavBar.checkCartBadge(AppPrefsUtils.getInt(GoodsConstant.SP_CART_SIZE))
     }
@@ -119,9 +122,6 @@ class MainActivity : BaseActivity() {
         Bus.unregister(this)
     }
 
-    *//*
-    重写back事件，双击退出
-     *//*
     override fun onBackPressed() {
         if (System.currentTimeMillis() - pressTime > 2000) {
             pressTime = System.currentTimeMillis()
@@ -129,5 +129,5 @@ class MainActivity : BaseActivity() {
         } else {
             AppManager.instance.exitApp(this)
         }
-    }*/
+    }
 }

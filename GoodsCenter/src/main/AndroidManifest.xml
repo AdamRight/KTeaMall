@@ -11,7 +11,7 @@ package="com.ktea.goods">
     <activity
         android:name=".ui.activity.GoodsDetailActivity"
         android:theme="@style/AppTheme.Black"/>
-    <!--<activity
-        android:name=".ui.activity.CartActivity"/>-->
+    <activity
+        android:name=".ui.activity.CartActivity"/>
 </application>
 </manifest>

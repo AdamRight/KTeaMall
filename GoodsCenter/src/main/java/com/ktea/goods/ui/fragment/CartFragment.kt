@@ -1,24 +1,49 @@
 package com.ktea.goods.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ktea.base.ui.fragment.BaseFragment
+import com.alibaba.android.arouter.launcher.ARouter
+import com.eightbitlab.rxbus.Bus
+import com.eightbitlab.rxbus.registerInBus
+import com.kennyc.view.MultiStateView
+import com.ktea.base.ext.onClick
+import com.ktea.base.ext.setVisible
+import com.ktea.base.ext.startLoading
+import com.ktea.base.ui.fragment.BaseMvpFragment
+import com.ktea.base.utils.AppPrefsUtils
+import com.ktea.base.utils.YuanFenConverter
 import com.ktea.goods.R
+import com.ktea.goods.common.GoodsConstant
+import com.ktea.goods.data.protocol.CartGoods
+import com.ktea.goods.event.CartAllCheckedEvent
+import com.ktea.goods.event.UpdateCartSizeEvent
+import com.ktea.goods.event.UpdateTotalPriceEvent
+import com.ktea.goods.injection.component.DaggerCartComponent
+import com.ktea.goods.injection.module.CartModule
+import com.ktea.goods.presenter.CartListPresenter
+import com.ktea.goods.presenter.view.CartListView
+import com.ktea.goods.ui.adapter.CartGoodsAdapter
+import com.ktea.provider.common.ProviderConstant
+import com.ktea.provider.router.RouterPath
+import kotlinx.android.synthetic.main.fragment_cart.*
+import org.jetbrains.anko.support.v4.toast
 
-class CartFragment : BaseFragment() {
+class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
 
-    //private lateinit var mAdapter: CartGoodsAdapter
+    private lateinit var mAdapter: CartGoodsAdapter
 
-    //private var mTotalPrice: Long = 0
+    private var mTotalPrice: Long = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_cart, container, false)
     }
 
-   /* override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
         initObserve()
@@ -27,6 +52,8 @@ class CartFragment : BaseFragment() {
     override fun onStart() {
         super.onStart()
         loadData()
+
+        inventGoodsListResult()
     }
 
     override fun onDestroy() {
@@ -34,9 +61,6 @@ class CartFragment : BaseFragment() {
         Bus.unregister(this)
     }
 
-    *//*
-        初始化视图和事件
-     *//*
     private fun initView() {
         mCartGoodsRv.layoutManager = LinearLayoutManager(context)
         mAdapter = CartGoodsAdapter(context!!)
@@ -83,9 +107,7 @@ class CartFragment : BaseFragment() {
         }
     }
 
-    *//*
-        刷新是否为编辑状态
-     *//*
+
     private fun refreshEditStatus() {
         val isEditStatus = getString(R.string.common_edit) == mHeaderBar.getRightText()
         mTotalPriceTv.setVisible(isEditStatus.not())
@@ -98,9 +120,7 @@ class CartFragment : BaseFragment() {
         }
     }
 
-    *//*
-        加载数据
-     *//*
+
     private fun loadData() {
         mMultiStateView.startLoading()
         mPresenter.getCartList()
@@ -119,9 +139,7 @@ class CartFragment : BaseFragment() {
                 }.registerInBus(this)
     }
 
-    *//*
-        更新总价
-     *//*
+
     @SuppressLint("SetTextI18n")
     private fun updateTotalPrice() {
         mTotalPrice = mAdapter.dataList
@@ -131,9 +149,7 @@ class CartFragment : BaseFragment() {
         mTotalPriceTv.text = "合计：${YuanFenConverter.changeF2YWithUnit(mTotalPrice)}"
     }
 
-    *//*
-        Dagger注册
-     *//*
+
     override fun injectComponent() {
         DaggerCartComponent.builder()
                 .activityComponent(mActivityComponent)
@@ -143,9 +159,7 @@ class CartFragment : BaseFragment() {
         mPresenter.mView = this
     }
 
-    *//*
-        获取购物车列表 回调
-     *//*
+
     override fun onGetCartListResult(result: MutableList<CartGoods>?) {
         if (result != null && result.size > 0) {
             mAdapter.setData(result)
@@ -163,28 +177,40 @@ class CartFragment : BaseFragment() {
         updateTotalPrice()
     }
 
-    *//*
-        删除购物车 回调
-     *//*
+
     override fun onDeleteCartListResult(result: Boolean) {
         toast("购物车删除成功")
         refreshEditStatus()
         loadData()
     }
 
-    *//*
-        提交购物车 回调
-     *//*
+
     override fun onSubmitCartListResult(result: Int) {
         ARouter.getInstance().build(RouterPath.OrderCenter.PATH_ORDER_CONFIRM)
                 .withInt(ProviderConstant.KEY_ORDER_ID, result)
                 .navigation()
     }
 
-    *//*
-        设置Back是否可见
-     *//*
     fun setBackVisible(isVisible: Boolean) {
         mHeaderBar.getLeftView().setVisible(isVisible)
-    }*/
+    }
+
+
+    /*********************************************************** 虚拟数据  开始 ***********************************************************/
+    private fun inventGoodsListResult() {
+        var goods1 = CartGoods(111, 14,"Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)",
+                "https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg"
+                ,333,2,"666",false)
+        var goods2 = CartGoods(111, 14,"Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)",
+                "https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg"
+                ,333,2,"666",false)
+        var goods3 = CartGoods(111, 14,"Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)",
+                "https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg"
+                ,333,2,"666",false)
+        var result: MutableList<CartGoods> = mutableListOf(goods1,goods2,goods3)
+        onGetCartListResult(result)
+    }
+
+    /*********************************************************** 虚拟数据 结束  ***********************************************************/
+
 }
