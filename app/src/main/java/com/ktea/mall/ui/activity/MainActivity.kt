@@ -115,6 +115,7 @@ class MainActivity : BaseActivity() {
 
     private fun loadCartSize() {
         mBottomNavBar.checkCartBadge(AppPrefsUtils.getInt(GoodsConstant.SP_CART_SIZE))
+        mBottomNavBar.checkMsgBadge(true)
     }
 
     override fun onDestroy() {

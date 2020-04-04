@@ -38,4 +38,6 @@ dependencies {
         implementation project(path: ':UserCenter')
     }
     implementation project(':GoodsCenter')
+    implementation project(':OrderCenter')
+    implementation project(':PaySDK')
 }

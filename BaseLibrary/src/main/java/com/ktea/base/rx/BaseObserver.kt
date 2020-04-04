@@ -23,8 +23,9 @@ open class BaseObserver<T>(private val baseView: BaseView) : Observer<T> {
         baseView.hideLoading()
         if (e is BaseException) {
             baseView.onError(e.msg)
-        } else {
-            baseView.onError("服务器异常")
         }
+        /*else {
+            baseView.onError("服务器异常")
+        }*/
     }
 }

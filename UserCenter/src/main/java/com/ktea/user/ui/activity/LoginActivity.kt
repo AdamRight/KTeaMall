@@ -2,10 +2,12 @@ package com.ktea.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.ktea.base.ext.enable
 import com.ktea.base.ext.onClick
 import com.ktea.base.ui.activity.BaseMvpActivity
+import com.ktea.provider.PushProvider
 import com.ktea.provider.router.RouterPath
 import com.ktea.user.R
 import com.ktea.user.data.protocol.UserInfo
@@ -22,7 +24,9 @@ import org.jetbrains.anko.toast
 @Route(path = RouterPath.UserCenter.PATH_LOGIN)
 class LoginActivity: BaseMvpActivity<LoginPresenter>(),LoginView,View.OnClickListener {
 
-    var mPushProvider: String? = null
+    @Autowired(name = RouterPath.MessageCenter.PATH_MESSAGE_PUSH)
+    @JvmField
+    var mPushProvider: PushProvider? = null
 
     override fun injectComponent() {
         DaggerUserComponent.builder()
@@ -65,7 +69,7 @@ class LoginActivity: BaseMvpActivity<LoginPresenter>(),LoginView,View.OnClickLis
             R.id.mRightTv ->
                 startActivity<RegisterActivity>()
             R.id.mLoginBtn ->{
-                mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), mPushProvider ?: "")
+                mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), mPushProvider?.getPushId() ?: "")
                 startActivity<UserInfoActivity>()
             }
             R.id.mForgetPwdTv -> {

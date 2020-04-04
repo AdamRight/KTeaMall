@@ -4,18 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.kotlin.order.common.OrderConstant
+import com.kotlin.order.common.OrderStatus
 import com.ktea.base.ext.loadUrl
 import com.ktea.base.ext.onClick
 import com.ktea.base.ui.fragment.BaseFragment
 import com.ktea.base.utils.AppPrefsUtils
 import com.ktea.mall.R
 import com.ktea.mall.ui.activity.SettingActivity
+import com.ktea.order.ui.activity.OrderActivity
+import com.ktea.order.ui.activity.ShipAddressActivity
 import com.ktea.provider.common.ProviderConstant
 import com.ktea.provider.common.afterLogin
 import com.ktea.provider.common.isLogined
 import com.ktea.user.ui.activity.UserInfoActivity
 import kotlinx.android.synthetic.main.fragment_me.*
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * Created by jiangtea on 2020/3/28.
@@ -76,7 +81,7 @@ class MeFragment : BaseFragment(), View.OnClickListener {
                     startActivity<UserInfoActivity>()
                 }
             }
-            /*R.id.mWaitPayOrderTv -> {
+            R.id.mWaitPayOrderTv -> {
                startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_PAY)
            }
            R.id.mWaitConfirmOrderTv -> {
@@ -98,7 +103,7 @@ class MeFragment : BaseFragment(), View.OnClickListener {
            }
            R.id.mShareTv -> {
                toast(R.string.coming_soon_tip)
-           }*/
+           }
             R.id.mSettingTv -> {
                 startActivity<SettingActivity>()
             }

@@ -2,7 +2,6 @@ package com.ktea.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
-import com.ktea.base.common.AppManager
 import com.ktea.base.ext.enable
 import com.ktea.base.ext.onClick
 import com.ktea.base.ui.activity.BaseMvpActivity
@@ -79,20 +78,6 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
                 startActivity<LoginActivity>()
             }
         }
-    }
-
-    /**
-     * 返回键退出程序
-     */
-    override fun onBackPressed() {
-        val time = System.currentTimeMillis()
-        if (time - pressTime > 2000) {
-            toast("再按一次退出程序")
-            pressTime = time
-        } else {
-            AppManager.instance.exitApp(this)
-        }
-
     }
 
 }

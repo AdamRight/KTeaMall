@@ -103,6 +103,11 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
                 toast("请选择需要提交的数据")
             } else {
                 mPresenter.submitCart(cartGoodsList, mTotalPrice)
+
+                //虚假数据
+                ARouter.getInstance().build(RouterPath.OrderCenter.PATH_ORDER_CONFIRM)
+                        .withInt(ProviderConstant.KEY_ORDER_ID, 66)
+                        .navigation()
             }
         }
     }
